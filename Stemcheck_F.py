@@ -161,11 +161,10 @@ if 'user/email' in filtered_data.columns:
 
     # Add a copy button to copy the email address to the clipboard
     if selected_email:
-        copy_email_button_text = "Copy Email Address"
-        if st.button(copy_email_button_text):
+        
             #pyperclip.copy(selected_email)  # Copy the email address to the clipboard
-            st.code(selected_email)
-            st.write("Email address copied to clipboard")  # Inform the user that the email address has been copied
+        st.code(selected_email)
+        st.write("Email address copied to clipboard")  # Inform the user that the email address has been copied
 
     if not filtered_email_data.empty:
         latest_submission_email = None
