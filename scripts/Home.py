@@ -271,24 +271,33 @@ if 'Accepted /Rejected' in category_dataset.columns and 'Comment' in category_da
 
 
 # Create a text box to enter marks for the selected email ID and assignment file
+
 if selected_email and selected_assignment_file:
     marks_key = f"marks_{selected_email}_{selected_assignment_file}"
-    entered_marks = st.text_input("Enter Marks (Integer only):", key=marks_key)
-    marks = int(entered_marks) if entered_marks.isdigit() else None if entered_marks else None
+    entered_marks = st.number_input("Enter Marks (Integer only):", min_value=0, max_value=10, key=marks_key)
 
-    # Check if either of the boxes is not selected
-    if not marks:
-        st.warning("Please enter a valid integer for marks.")
+    # Validate if the entered marks are within the allowed range
+    if not isinstance(entered_marks, int) and entered_marks != 0:
+        st.warning("Please enter a valid integer between 0 and 10 for marks.")
         st.error("Please fill in all the compulsory fields marked with * before proceeding.")
         st.stop()
-    if marks:
-        st.write(f"Marks entered: {marks}")
-    #else:
-        #st.warning("Please enter a valid integer for marks.")
 
+    if entered_marks:  # Check if there is a value in entered_marks
+        st.write(f"Marks entered: {entered_marks}")
+        marks = entered_marks  # Assign entered_marks to the marks variable
+    else:
+        st.warning("Please enter a valid integer for marks.")
+        marks = None  # Assign None if entered_marks is not provided
+
+    # Proceed with using the 'marks' variable
+    if marks is not None:  # Check if marks has been properly assigned
+        st.write(f"Marks entered and validated: {marks}")
+    else:
+        st.warning("Marks is not provided or invalid.")
 
 # Add an empty line to visually separate the elements
 st.write("")
+
 
 unique_key = latest_submission_email + " " + f"_Email {selected_email}"+" "+f"_Sub No:{latest_submission_no}"
 # Define a function to create a DataFrame with the provided data
