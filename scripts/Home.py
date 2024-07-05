@@ -83,7 +83,7 @@ def get_dataset(selected_assignment_file):
     return file_mapping[selected_assignment_file]
 
 # Define the GitHub API URL for the folder containing CSV files
-github_folder_url = 'https://api.github.com/repos/VigyanShaala-Tech/Stem_Check/contents/Files'
+github_folder_url = 'https://api.github.com/repos/akshatasatpute/Stemcheck/contents/Files'
 
 # Read all assignment files from the folder path obtained from GitHub
 file_mapping = read_assignment_files_from_github(github_folder_url)
