@@ -55,11 +55,12 @@ st.write("Selected Cohort:", selected_Cohort)
 # Function to read all CSV files from a folder and store them in a dictionary
 # Function to read CSV files from a folder path obtained from GitHub and store them in a dictionary
 def read_assignment_files_from_github(folder_path_url):
+    file_mapping = {}  # Initialize file_mapping as an empty dictionary or the appropriate data structure
+    
     response = requests.get(folder_path_url)  # Get folder contents from GitHub
     
     if response.status_code == 200:
         files_info = response.json()
-        file_mapping = {}
         
         for file_info in files_info:
             file_name = file_info['name']
@@ -71,13 +72,14 @@ def read_assignment_files_from_github(folder_path_url):
                 if csv_response.status_code == 200:
                     csv_content = pd.read_csv(StringIO(csv_response.text))
                     file_mapping[file_name] = csv_content
-                    #st.write(f"Successfully read CSV file: {file_name}")
+                    # st.write(f"Successfully read CSV file: {file_name}")
                 else:
                     st.write(f"Failed to download CSV file: {file_name}")
     else:
         st.write("Failed to retrieve files from the GitHub repository.")
     
     return file_mapping
+
 # Function to get the dataset for a selected assignment file
 def get_dataset(selected_assignment_file):
     return file_mapping[selected_assignment_file]
