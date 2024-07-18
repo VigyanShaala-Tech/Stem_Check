@@ -253,6 +253,8 @@ if 'Accepted /Rejected' in category_dataset.columns and 'Comment' in category_da
         #if not selected_comments_accepted:
             #st.error("Please fill in all the compulsory fields marked with * before proceeding.")
             #st.stop()
+
+        selected_comments_text_accepted = ""
             
         if selected_comments_accepted:
             selected_comments_text_accepted = '\n'.join(selected_comments_accepted)
