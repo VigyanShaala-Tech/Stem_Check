@@ -27,9 +27,9 @@ st.sidebar.image(logo_path, width=90)
 #user_names = ['Shalini', 'Titli', 'Deepika']
 # Predefined dictionary of user names and access codes known only to administrators
 user_access_codes = {
-    "Shalini": "1122",
-    "Titli": "4455",
-    "Deepika": "3399",
+    "Salini": "1122",
+    "Titly": "4455",
+    "Dipika": "3399",
     # Add more user names and access codes as needed
 }
 
@@ -250,9 +250,9 @@ if 'Accepted /Rejected' in category_dataset.columns and 'Comment' in category_da
 
 
         # Check if either of the boxes is not selected
-        if not selected_comments_accepted:
-            st.error("Please fill in all the compulsory fields marked with * before proceeding.")
-            st.stop()
+        #if not selected_comments_accepted:
+            #st.error("Please fill in all the compulsory fields marked with * before proceeding.")
+            #st.stop()
             
         if selected_comments_accepted:
             selected_comments_text_accepted = '\n'.join(selected_comments_accepted)
@@ -277,7 +277,7 @@ if selected_email and selected_assignment_file:
     entered_marks = st.number_input("Enter Marks (Integer only):", min_value=0, max_value=10, key=marks_key)
 
     # Validate if the entered marks are within the allowed range
-    if not isinstance(entered_marks, int) and entered_marks != 0:
+    if not isinstance(entered_marks, int):
         st.warning("Please enter a valid integer between 0 and 10 for marks.")
         st.error("Please fill in all the compulsory fields marked with * before proceeding.")
         st.stop()
