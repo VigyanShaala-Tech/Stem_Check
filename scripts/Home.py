@@ -342,7 +342,7 @@ def read_data_from_supabase(table_name):
     return response.get('data')
 
 # Create a button to copy the comment for the email ID, save feedback data, and extract email IDs
-if selected_comments_text_accepted and entered_marks is not None and 0 <= entered_marks <= 10:
+if entered_marks is not None and 0 <= entered_marks <= 10:
     combined_button_text = "Copy Comment, Save Feedback Data, and Extract Email IDs"
     if st.button(combined_button_text):
         # Copy the comment to the clipboard
