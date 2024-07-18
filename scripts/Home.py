@@ -283,8 +283,9 @@ if selected_email and selected_assignment_file:
         st.warning("Please enter a valid integer between 0 and 10 for marks.")
         if entered_marks > 10:
             st.error("Marks cannot be greater than 10.")
+            st.stop()
         st.error("Please fill in all the compulsory fields marked with * before proceeding.")
-        st.stop()
+        
         
     if entered_marks:  # Check if there is a value in entered_marks
         st.write(f"Marks entered: {entered_marks}")
