@@ -306,119 +306,81 @@ st.write("")
 
 unique_key = latest_submission_email + " " + f"_Email {selected_email}"+" "+f"_Sub No:{latest_submission_no}"
 # Define a function to create a DataFrame with the provided data
-def create_feedback_dataframe(unique_key,selected_user_name,selected_assignment_file, selected_status, latest_submission_email, latest_submission_no, selected_email, latest_messages, selected_comments_accepted,marks,selected_Cohort):
+def create_feedback_dataframe(unique_key, selected_user_name, selected_assignment_file, selected_status, latest_submission_email, latest_submission_no, selected_email, latest_messages, selected_comments_accepted, marks, selected_Cohort):
     data = {
-        'Email_ID': [selected_email],
+        'key': [unique_key],
+        'User_Name': [selected_user_name],
         'Assignment_File': [selected_assignment_file],
         'File_Status': [selected_status],
         'PDF_Name': [latest_submission_email],
         'Submission_Number': [latest_submission_no],
+        'Email_ID': [selected_email],
         'Message_Displayed': [latest_messages],
-        #'Category Status': [selected_category_status],
-        'Marks': [marks],
         'Comments': [", ".join(selected_comments_accepted) if selected_comments_accepted else None],
-        'User_Name': [selected_user_name],
-        'key': [unique_key],
-        'Cohort':[selected_Cohort]
+        'Marks': [marks],
+        'Cohort': [selected_Cohort]
     }
+
     feedback_df = pd.DataFrame(data)
     return feedback_df
 
+# Your Supabase configurations
 url: str = 'https://bvvaailuzioczysisnoc.supabase.co'
 key: str = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2dmFhaWx1emlvY3p5c2lzbm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc1OTEwNTMsImV4cCI6MjAzMzE2NzA1M30.kDC8CsjhjB_XkVo9OM3EchNMWk5ytyc-s629I0-qr1k'
 supabase: Client = create_client(url, key)
 
-# Function to save feedback data to Supabase
-def save_feedback_to_supabase(feedback_data, table_name):
-    response = supabase.table(table_name).insert(feedback_data).execute()
-    return response
+# Function to process the selected email
+def process_email(selected_email):
+    st.session_state.processed_emails.append(selected_email)
 
+if 'processed_emails' not in st.session_state:
+    st.session_state.processed_emails = []
 
-# Function to read data from Supabase table
-def read_data_from_supabase(table_name):
-    response = supabase.table(table_name).select().execute()
-    if response.get('error'):
-        print(f"Error fetching data from '{table_name}': {response['error']}")
-        return None
-    return response.get('data')
-
-# Create a button to copy the comment for the email ID, save feedback data, and extract email IDs
-if entered_marks is not None and 0 <= entered_marks <= 10:
+# Process the button click
+if selected_comments_text_accepted:
     combined_button_text = "Copy Comment, Save Feedback Data, and Extract Email IDs"
     if st.button(combined_button_text):
-        # Copy the comment to the clipboard
-        #pyperclip.copy(selected_comments_text_accepted)
         st.code(selected_comments_text_accepted)
-        
-        # Create a DataFrame with the feedback data
-        feedback_df = create_feedback_dataframe(unique_key, selected_user_name, selected_assignment_file, selected_status, latest_submission_email, latest_submission_no, selected_email, latest_messages, selected_comments_accepted, marks,selected_Cohort)
-        
-        # Convert DataFrame to dictionary records
-        records = feedback_df.to_dict(orient='records')
-        
-        table_name = "TableF"
-        
-        # Save feedback data to Supabase
-        response = save_feedback_to_supabase(records, table_name)
+        process_email(selected_email)
 
-        
-        for record in records:
-            record_id = record.get('key')
-            
-            # Perform insertion or update based on record existence
-            existing_record = supabase.table(table_name).select().eq('key', record_id).execute()
-            
-            if existing_record.get('error'):
-                print(f"Error fetching existing record for key '{record_id}': {existing_record['error']}")
+        feedback_df = create_feedback_dataframe(unique_key, selected_user_name, selected_assignment_file, selected_status, latest_submission_email, latest_submission_no, selected_email, latest_messages, selected_comments_accepted, marks, selected_Cohort)
+        if feedback_df is not None:
+            # Insert the records into the Supabase table "TableF"
+            records = feedback_df.to_dict(orient='records')
+            for record in records:
+                if record['Comments'] is None:  # Check for null values in the Comments column
+                    record['Comments'] = ""  # Replace null with an empty string to satisfy the not-null constraint
+
+            response = supabase.table("TableF").insert(records).execute()
+            if response.get('error'):
+                st.error("An error occurred while storing data in Supabase.")
             else:
-                if existing_record.get('data'):
-                    # Update the existing record
-                    response = supabase.table(table_name).update(record).eq('key', record_id).execute()
-                    print(f"Updated Record with key {record_id}: {response}")
-                else:
-                    # Insert a new record
-                    response = supabase.table(table_name).insert(record).execute()
-                    print(f"Inserted New Record with key {record_id}: {response}")
+                st.success("Data stored successfully in Supabase.")
+else:
+    st.info("Please provide comments before proceeding.")
 
 
-        # Inform the user about the actions taken
-        st.write("Comment copied to clipboard, Feedback data saved to Feedback.xlsx")
-        
+# Make a GET request to fetch data from the specified table
+response = requests.get(f'https://bvvaailuzioczysisnoc.supabase.co/rest/v1/TableF', headers={'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2dmFhaWx1emlvY3p5c2lzbm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc1OTEwNTMsImV4cCI6MjAzMzE2NzA1M30.kDC8CsjhjB_XkVo9OM3EchNMWk5ytyc-s629I0-qr1k'})
 
-        # Fetch and display data from Supabase table 'TableF'
-        supabase_table_name = 'TableF'
-        supabase_url = 'https://bvvaailuzioczysisnoc.supabase.co'
-        supabase_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2dmFhaWx1emlvY3p5c2lzbm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc1OTEwNTMsImV4cCI6MjAzMzE2NzA1M30.kDC8CsjhjB_XkVo9OM3EchNMWk5ytyc-s629I0-qr1k'
+# Check if the request was successful
+if response.status_code == 200:
+    data = response.json()  # Extract the JSON response data
+    # Convert the JSON data to a Pandas DataFrame
+    df = pd.DataFrame(data)
 
-        response = requests.get(f'{supabase_url}/rest/v1/{supabase_table_name}', headers={'apikey': supabase_key})
+    if filtered_user_names:
 
-        if response.status_code == 200:
-            data = response.json()
-            df = pd.DataFrame(data)
-            print(df)  # Display the fetched data
-        else:
-            print(f"Failed to fetch data from '{supabase_table_name}': {response.text}")
-
-        
-        if filtered_user_names:
-    # Group the DataFrame by 'Cohort' and 'User_Name' columns and count the number of occurrences
-            cohort_user_counts = df.groupby(['Cohort', 'User_Name']).size().reset_index(name='User_Count')
+        # Group the DataFrame by 'Cohort' and 'User_Name' and count the number of occurrences
+        cohort_user_counts = df.groupby(['Cohort', 'User_Name']).size().reset_index(name='User_Count')
 
         # Filter the cohort_user_counts DataFrame based on the selected_user_name
-            selected_user_cohort_count = cohort_user_counts[cohort_user_counts['User_Name'] == selected_user_name]
-            selected_user_cohort_count = cohort_user_counts[(cohort_user_counts['User_Name'] == selected_user_name) & (cohort_user_counts['Cohort'] == selected_Cohort)]
+        selected_user_cohort_count = cohort_user_counts[cohort_user_counts['User_Name'] == selected_user_name]
+        selected_user_cohort_count = cohort_user_counts[(cohort_user_counts['User_Name'] == selected_user_name) & (cohort_user_counts['Cohort'] == selected_Cohort)]
 
-            if not selected_user_cohort_count.empty:
-                st.write(f"Total Assignments corrected by {selected_user_name} in {selected_Cohort}: {selected_user_cohort_count['User_Count'].values[0]}")
-            else:
-                st.write(f"No assignments found for {selected_user_name} in {selected_Cohort}.")
+        if not selected_user_cohort_count.empty:
+            st.write(f"Total Assignments corrected by {selected_user_name} in {selected_Cohort}: {selected_user_cohort_count['User_Count'].values[0]}")
         else:
-            st.write("No user found for the entered access code. Please enter a valid code.")
-
-            
-
-        
-# Add the processed email to the session state to remove it from the dropdown
-        st.session_state.processed_emails.append(selected_email)
-
-
+            st.write(f"No assignments found for {selected_user_name} in {selected_Cohort}.")
+    else:
+        st.write("No user found for the entered access code. Please enter a valid code.")
