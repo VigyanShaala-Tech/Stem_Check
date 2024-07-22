@@ -276,7 +276,7 @@ if 'Accepted /Rejected' in category_dataset.columns and 'Comment' in category_da
 
 if selected_email and selected_assignment_file:
     marks_key = f"marks_{selected_email}_{selected_assignment_file}"
-    entered_marks = st.number_input("Enter Marks (Integer only):", min_value=0, max_value=10, key=marks_key)
+    entered_marks = st.number_input("Enter Marks (Integer only):",max_value=10, key=marks_key)
 
     # Validate if the entered marks are within the allowed range
     if not isinstance(entered_marks, int) or entered_marks > 10:  # Note the additional condition checking if marks are greater than 10
