@@ -276,29 +276,22 @@ if 'Accepted /Rejected' in category_dataset.columns and 'Comment' in category_da
 
 if selected_email and selected_assignment_file:
     marks_key = f"marks_{selected_email}_{selected_assignment_file}"
-    entered_marks = st.number_input("Enter Marks (Integer only):",max_value=10, key=marks_key)
+    entered_marks = st.number_input("Enter Marks (Integer only):", max_value=10, key=marks_key)
 
     # Validate if the entered marks are within the allowed range
-    if not isinstance(entered_marks, int) or entered_marks > 10:  # Note the additional condition checking if marks are greater than 10
-        st.warning("Please enter a valid integer between 0 and 10 for marks.")
-        if entered_marks > 10:
-            st.error("Marks cannot be greater than 10.")
-            st.stop()
-        st.error("Please fill in all the compulsory fields marked with * before proceeding.")
-        
-        
-    if entered_marks:  # Check if there is a value in entered_marks
-        st.write(f"Marks entered: {entered_marks}")
-        marks = entered_marks  # Assign entered_marks to the marks variable
-    else:
+    if not isinstance(entered_marks, int) and entered_marks:  # Check if entered_marks is not empty
         st.warning("Please enter a valid integer for marks.")
-        marks = None  # Assign None if entered_marks is not provided
-
-    # Proceed with using the 'marks' variable
-    #if marks is not None:  # Check if marks has been properly assigned
-        #st.write(f"Marks entered and validated: {marks}")
-    #else:
-        #st.warning("Marks is not provided or invalid.")
+        st.error("Please fill in all the compulsory fields marked with * before proceeding.")
+        st.stop()
+        
+    if entered_marks is not None:  # Check if entered_marks is not None
+        if entered_marks != 0:  # Check if entered_marks is not equal to 0
+            st.write(f"Marks entered: {entered_marks}")
+            marks = entered_marks  # Assign entered_marks to the marks variable
+        else:
+            marks = 0  # Assign 0 if entered_marks is 0
+    else:
+        marks = None
 
 # Add an empty line to visually separate the elements
 st.write("")
