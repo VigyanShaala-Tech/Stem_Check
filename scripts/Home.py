@@ -17,10 +17,10 @@ st.markdown('<meta name="viewport" content="width=device-width, initial-scale=0.
 
 
 # Display the PNG image in the top left corner of the Streamlit sidebar with custom dimensions
-image_path = "https://bvvaailuzioczysisnoc.supabase.co/storage/v1/object/sign/Stemcheck/VS-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTdGVtY2hlY2svVlMtbG9nby5wbmciLCJpYXQiOjE3MTk1NTU1NDksImV4cCI6MTc1MTA5MTU0OX0.kwQL6_SjukgBtAsMK9LdKV0zGbJ4wgdtYfwZssPjNW4&t=2024-06-28T06%3A19%3A08.934Z"
+image_path = 'https://twetkfnfqdtsozephdse.supabase.co/storage/v1/object/sign/stemcheck/VS-logo.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGVtY2hlY2svVlMtbG9nby5wbmciLCJpYXQiOjE3MjE5NzA3ODUsImV4cCI6MTc1MzUwNjc4NX0.purLZOGk272W80A4OlvnavqVB9u-yExhzpmI3dZrjdM&t=2024-07-26T05%3A13%3A02.704Z'
 st.sidebar.image(image_path, width=150)
 
-logo_path = "https://bvvaailuzioczysisnoc.supabase.co/storage/v1/object/sign/Stemcheck/Logo__.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTdGVtY2hlY2svTG9nb19fLmpwZyIsImlhdCI6MTcxOTU1NTU3MCwiZXhwIjoxNzUxMDkxNTcwfQ.n-egtg-wl-E24wfMqyByUagLUNe8D6oBYHBFBQkeyvE&t=2024-06-28T06%3A19%3A28.903Z"
+logo_path = 'https://twetkfnfqdtsozephdse.supabase.co/storage/v1/object/sign/stemcheck/Logo__.jpg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGVtY2hlY2svTG9nb19fLmpwZyIsImlhdCI6MTcyMTk3MDgxMCwiZXhwIjoxNzUzNTA2ODEwfQ.iG-36L48IvAEvB8X6uI3pNBZk1StNykH1PEbijCA368&t=2024-07-26T05%3A13%3A28.196Z'
 st.sidebar.image(logo_path, width=90)
 
 # Update the user name list with Shalini, Titli, and Deepika
@@ -116,7 +116,7 @@ if selected_assignment_file is not None:
 
 
 # URL pointing to the CSV file
-file_url = 'https://bvvaailuzioczysisnoc.supabase.co/storage/v1/object/sign/Stemcheck/Comments_sheet.csv?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTdGVtY2hlY2svQ29tbWVudHNfc2hlZXQuY3N2IiwiaWF0IjoxNzE3NjYwMzQ1LCJleHAiOjE3NDkxOTYzNDV9.gUNII7Hhc3yqRNJKJ780GVlfvOTEAi9fhxIh9AWbGV0&t=2024-06-06T07%3A52%3A24.268Z'
+file_url = 'https://twetkfnfqdtsozephdse.supabase.co/storage/v1/object/sign/stemcheck/Comments%20sheet.csv?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGVtY2hlY2svQ29tbWVudHMgc2hlZXQuY3N2IiwiaWF0IjoxNzIxOTcwODUyLCJleHAiOjE3NTM1MDY4NTJ9.NAvZaUbjEeZZFk1Z5y9JYOA8z_0t4_GCeqPjsmBZL5A&t=2024-07-26T05%3A14%3A09.839Z'
 
 # Make a GET request to the URL to retrieve the CSV file
 try:
@@ -318,8 +318,8 @@ def create_feedback_dataframe(unique_key, selected_user_name, selected_assignmen
     return feedback_df
 
 # Your Supabase configurations
-url: str = 'https://bvvaailuzioczysisnoc.supabase.co'
-key: str = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2dmFhaWx1emlvY3p5c2lzbm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc1OTEwNTMsImV4cCI6MjAzMzE2NzA1M30.kDC8CsjhjB_XkVo9OM3EchNMWk5ytyc-s629I0-qr1k'
+url: str = 'https://twetkfnfqdtsozephdse.supabase.co'
+key: str = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3ZXRrZm5mcWR0c296ZXBoZHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE5Njk0MzcsImV4cCI6MjAzNzU0NTQzN30.D76H5RoTel0M7Wj6PTRSAXxxYGic7K25BSaeQDZqIN0'
 supabase: Client = create_client(url, key)
 
 # Function to process the selected email
@@ -354,7 +354,8 @@ else:
 
 
 # Make a GET request to fetch data from the specified table
-response = requests.get(f'https://bvvaailuzioczysisnoc.supabase.co/rest/v1/TableF', headers={'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2dmFhaWx1emlvY3p5c2lzbm9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTc1OTEwNTMsImV4cCI6MjAzMzE2NzA1M30.kDC8CsjhjB_XkVo9OM3EchNMWk5ytyc-s629I0-qr1k'})
+response = requests.get(f'https://twetkfnfqdtsozephdse.supabase.co/rest/v1/TableF', headers={'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3ZXRrZm5mcWR0c296ZXBoZHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE5Njk0MzcsImV4cCI6MjAzNzU0NTQzN30.D76H5RoTel0M7Wj6PTRSAXxxYGic7K25BSaeQDZqIN0'
+})
 
 # Check if the request was successful
 if response.status_code == 200:
