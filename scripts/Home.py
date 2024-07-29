@@ -27,9 +27,9 @@ st.sidebar.image(logo_path, width=90)
 #user_names = ['Shalini', 'Titli', 'Deepika']
 # Predefined dictionary of user names and access codes known only to administrators
 user_access_codes = {
-    "Salini": "abc123",
-    "Titly": "def456",
-    "Dipika": "ghi789",
+    "Salini": "1122",
+    "Titly": "4455",
+    "Dipika": "3399",
     # Add more user names and access codes as needed
 }
 
