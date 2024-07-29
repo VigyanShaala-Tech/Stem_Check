@@ -27,9 +27,9 @@ st.sidebar.image(logo_path, width=90)
 #user_names = ['Shalini', 'Titli', 'Deepika']
 # Predefined dictionary of user names and access codes known only to administrators
 user_access_codes = {
-    "Salini": "1122",
-    "Titly": "4455",
-    "Dipika": "3399",
+    "Salini": "abc123",
+    "Titly": "def456",
+    "Dipika": "ghi789",
     # Add more user names and access codes as needed
 }
 
@@ -53,6 +53,8 @@ selected_Cohort = st.sidebar.selectbox("Select a Cohort", ["Incubator_4","Incuba
 st.write("Selected Cohort:", selected_Cohort)
 
 # Function to read all CSV files from a folder and store them in a dictionary
+# Function to read CSV files from a folder path obtained from GitHub and store them in a dictionary
+# Define the GitHub API URLs for the folders containing CSV files
 github_urls = {
     "Goal Setting": 'https://docs.google.com/spreadsheets/d/1N5xI5KkCxKL6YYA2a3mfaj4F-wSl5zFifu4A84UHoOY/edit?usp=sharing',
     "Assignment 2": 'https://docs.google.com/spreadsheets/d/1veKz_bD7kZVxcUKG_K1wD5q2YDn3sZnygRCjwrxbDHo/edit?usp=sharing'
@@ -67,13 +69,6 @@ urls = {key: value.replace('/edit?usp=sharing', '/export?format=xlsx') for key, 
 selected_assignment_file = st.sidebar.selectbox('Select an assignment file', list(github_urls.keys()))
 df = pd.read_excel(urls[selected_assignment_file])   
 
-        
-# Sample usage of accessing a dataset for a selected assignment file
-selected_assignment_file = assignment_files[0]  # Replace index with the desired assignment file
-if selected_assignment_file in file_mapping:
-    selected_dataset = get_dataset(selected_assignment_file)
-else:
-    print("Selected assignment file not found in the dataset.")
 
 
 # Streamlit app interface
@@ -101,14 +96,15 @@ except Exception as e:
 unique_categories = category_dataset['Category '].unique()
 unique_status=category_dataset['Accepted /Rejected'].unique()
 
-data = df
+#data = get_dataset(selected_assignment_file)
+data=df
 
 # Create a dropdown to select the file status
 file_statuses = data['status'].unique()
 selected_status = st.sidebar.selectbox('Select File Status', file_statuses)
 
 # Filter the data based on the selected status from the selected assignment file
-filtered_data = get_dataset(selected_assignment_file)
+filtered_data = df
 filtered_data = filtered_data[filtered_data['status'] == selected_status]
 
 
@@ -219,8 +215,7 @@ if 'Accepted /Rejected' in category_dataset.columns and 'Comment' in category_da
         #if not selected_comments_accepted:
             #st.error("Please fill in all the compulsory fields marked with * before proceeding.")
             #st.stop()
-
-        selected_comments_text_accepted = ""
+        selected_comments_text_accepted=''
             
         if selected_comments_accepted:
             selected_comments_text_accepted = '\n'.join(selected_comments_accepted)
@@ -259,12 +254,18 @@ if selected_email and selected_assignment_file:
     else:
         marks = None
 
+    # Proceed with using the 'marks' variable
+    #if marks is not None:  # Check if marks has been properly assigned
+        #st.write(f"Marks entered and validated: {marks}")
+    #else:
+        #st.warning("Marks is not provided or invalid.")
+
 # Add an empty line to visually separate the elements
 st.write("")
 
-
 unique_key = latest_submission_email + " " + f"_Email {selected_email}"+" "+f"_Sub No:{latest_submission_no}"
 # Define a function to create a DataFrame with the provided data
+# Define the function to create the feedback DataFrame
 def create_feedback_dataframe(unique_key, selected_user_name, selected_assignment_file, selected_status, latest_submission_email, latest_submission_no, selected_email, latest_messages, selected_comments_accepted, marks, selected_Cohort):
     data = {
         'key': [unique_key],
@@ -286,6 +287,7 @@ def create_feedback_dataframe(unique_key, selected_user_name, selected_assignmen
 # Your Supabase configurations
 url: str = 'https://twetkfnfqdtsozephdse.supabase.co'
 key: str = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3ZXRrZm5mcWR0c296ZXBoZHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE5Njk0MzcsImV4cCI6MjAzNzU0NTQzN30.D76H5RoTel0M7Wj6PTRSAXxxYGic7K25BSaeQDZqIN0'
+
 supabase: Client = create_client(url, key)
 
 # Function to process the selected email
@@ -320,8 +322,12 @@ else:
 
 
 # Make a GET request to fetch data from the specified table
-response = requests.get(f'https://twetkfnfqdtsozephdse.supabase.co/rest/v1/TableF', headers={'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3ZXRrZm5mcWR0c296ZXBoZHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE5Njk0MzcsImV4cCI6MjAzNzU0NTQzN30.D76H5RoTel0M7Wj6PTRSAXxxYGic7K25BSaeQDZqIN0'
-})
+# Fetch and display data from Supabase table 'TableF'
+supabase_table_name = 'TableF'
+supabase_url = 'https://twetkfnfqdtsozephdse.supabase.co'
+supabase_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3ZXRrZm5mcWR0c296ZXBoZHNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE5Njk0MzcsImV4cCI6MjAzNzU0NTQzN30.D76H5RoTel0M7Wj6PTRSAXxxYGic7K25BSaeQDZqIN0'
+
+response = requests.get(f'{supabase_url}/rest/v1/{supabase_table_name}', headers={'apikey': supabase_key})
 
 # Check if the request was successful
 if response.status_code == 200:
@@ -331,8 +337,9 @@ if response.status_code == 200:
 
     if filtered_user_names:
 
+
         # Group the DataFrame by 'Cohort' and 'User_Name' and count the number of occurrences
-        cohort_user_counts = df.groupby(['Cohort', 'User_Name']).size().reset_index(name='User_Count')
+        cohort_user_counts = df.groupby(['Cohort','User_Name']).size().reset_index(name='User_Count')
 
         # Filter the cohort_user_counts DataFrame based on the selected_user_name
         selected_user_cohort_count = cohort_user_counts[cohort_user_counts['User_Name'] == selected_user_name]
@@ -344,3 +351,9 @@ if response.status_code == 200:
             st.write(f"No assignments found for {selected_user_name} in {selected_Cohort}.")
     else:
         st.write("No user found for the entered access code. Please enter a valid code.")
+
+            
+
+        
+
+
