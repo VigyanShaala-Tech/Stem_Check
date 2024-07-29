@@ -53,46 +53,21 @@ selected_Cohort = st.sidebar.selectbox("Select a Cohort", ["Incubator_4","Incuba
 st.write("Selected Cohort:", selected_Cohort)
 
 # Function to read all CSV files from a folder and store them in a dictionary
-# Function to read CSV files from a folder path obtained from GitHub and store them in a dictionary
-def read_assignment_files_from_github(folder_path_url):
-    file_mapping = {}  # Initialize file_mapping as an empty dictionary or the appropriate data structure
-    
-    response = requests.get(folder_path_url)  # Get folder contents from GitHub
-    
-    if response.status_code == 200:
-        files_info = response.json()
+github_urls = {
+    "Goal Setting": 'https://docs.google.com/spreadsheets/d/1N5xI5KkCxKL6YYA2a3mfaj4F-wSl5zFifu4A84UHoOY/edit?usp=sharing',
+    "Assignment 2": 'https://docs.google.com/spreadsheets/d/1veKz_bD7kZVxcUKG_K1wD5q2YDn3sZnygRCjwrxbDHo/edit?usp=sharing'
+
+    # Add more assignments as needed
+}
+
+# Update the URLs to point to the export format
+urls = {key: value.replace('/edit?usp=sharing', '/export?format=xlsx') for key, value in github_urls.items()}
+
+# Read the data from the modified URLs into a pandas DataFrame based on user selection
+selected_assignment_file = st.sidebar.selectbox('Select an assignment file', list(github_urls.keys()))
+df = pd.read_excel(urls[selected_assignment_file])   
+
         
-        for file_info in files_info:
-            file_name = file_info['name']
-            file_download_url = file_info['download_url']
-            
-            if file_name.endswith('.csv'):
-                csv_response = requests.get(file_download_url)
-                
-                if csv_response.status_code == 200:
-                    csv_content = pd.read_csv(StringIO(csv_response.text))
-                    file_mapping[file_name] = csv_content
-                    # st.write(f"Successfully read CSV file: {file_name}")
-                else:
-                    st.write(f"Failed to download CSV file: {file_name}")
-    else:
-        st.write("Failed to retrieve files from the GitHub repository.")
-    
-    return file_mapping
-
-# Function to get the dataset for a selected assignment file
-def get_dataset(selected_assignment_file):
-    return file_mapping[selected_assignment_file]
-
-# Define the GitHub API URL for the folder containing CSV files
-github_folder_url = 'https://api.github.com/repos/VigyanShaala-Tech/Stem_Check/contents/Files'
-
-# Read all assignment files from the folder path obtained from GitHub
-file_mapping = read_assignment_files_from_github(github_folder_url)
-
-# Assign actual assignment file names
-assignment_files = list(file_mapping.keys())
-
 # Sample usage of accessing a dataset for a selected assignment file
 selected_assignment_file = assignment_files[0]  # Replace index with the desired assignment file
 if selected_assignment_file in file_mapping:
@@ -101,18 +76,9 @@ else:
     print("Selected assignment file not found in the dataset.")
 
 
-
 # Streamlit app interface
 # Create the Streamlit app interface
 st.title('STEMCHECK - STEM Assignment Checker Kit')
-
-# Select the assignment file from the available files
-selected_assignment_file = st.sidebar.selectbox('Select an assignment file', list(file_mapping.keys()))
-if selected_assignment_file is not None:
-    #st.write(f"Displaying data for file: {selected_assignment_file}")
-    selected_dataset = get_dataset(selected_assignment_file)
-    #st.write(selected_dataset)
-
 
 
 # URL pointing to the CSV file
@@ -135,7 +101,7 @@ except Exception as e:
 unique_categories = category_dataset['Category '].unique()
 unique_status=category_dataset['Accepted /Rejected'].unique()
 
-data = get_dataset(selected_assignment_file)
+data = df
 
 # Create a dropdown to select the file status
 file_statuses = data['status'].unique()
