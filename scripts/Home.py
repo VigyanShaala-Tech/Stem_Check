@@ -101,7 +101,7 @@ unique_status=category_dataset['Accepted /Rejected'].unique()
 data=df
 
 # Create a dropdown to select the file status
-file_statuses = data['status'].unique()
+file_statuses = ["under review", "reviewed", "rejected"]
 selected_status = st.sidebar.selectbox('Select File Status', file_statuses)
 
 # Filter the data based on the selected status from the selected assignment file
