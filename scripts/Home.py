@@ -78,7 +78,7 @@ st.title('STEMCHECK - STEM Assignment Checker Kit')
 
 
 # URL pointing to the CSV file
-file_url = 'https://twetkfnfqdtsozephdse.supabase.co/storage/v1/object/sign/stemcheck/Comments%20sheet.csv?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzdGVtY2hlY2svQ29tbWVudHMgc2hlZXQuY3N2IiwiaWF0IjoxNzIxOTcwODUyLCJleHAiOjE3NTM1MDY4NTJ9.NAvZaUbjEeZZFk1Z5y9JYOA8z_0t4_GCeqPjsmBZL5A&t=2024-07-26T05%3A14%3A09.839Z'
+file_url = 'https://bvvaailuzioczysisnoc.supabase.co/storage/v1/object/sign/Stemcheck/Comments_sheet.csv?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJTdGVtY2hlY2svQ29tbWVudHNfc2hlZXQuY3N2IiwiaWF0IjoxNzIzMTIwMzgxLCJleHAiOjE3NTQ2NTYzODF9.v5pjK3ienOW0QChsn6waVRZa-FumUwsvGDIv8h4VGqs&t=2024-08-08T12%3A32%3A57.924Z'
 
 # Make a GET request to the URL to retrieve the CSV file
 try:
