@@ -58,7 +58,7 @@ st.write("Selected Cohort:", selected_Cohort)
 github_urls = {
     "Goal Setting": 'https://docs.google.com/spreadsheets/d/1N5xI5KkCxKL6YYA2a3mfaj4F-wSl5zFifu4A84UHoOY/edit?usp=sharing',
     "Resume": 'https://docs.google.com/spreadsheets/d/1kMc2nZLZUTHID6pHLl3FFeYyPNoZHN3aFaPpxvmBoI8/edit?usp=sharing',
-    "SMART Goals": 'https://docs.google.com/spreadsheets/d/1D7apWcACHvNFvj0Ch5y7jAhpxWCCSoV9xvxFeWqziY8/edit?usp=sharing'
+    "SMART Goals": 'https://docs.google.com/spreadsheets/d/1D7apWcACHvNFvj0Ch5y7jAhpxWCCSoV9xvxFeWqziY8/edit?usp=sharing',
     "Searching & Securing Internship": 'https://docs.google.com/spreadsheets/d/1KSvcIF33jscpnboO65KIMt41uqPceGB2L4Ghrdj75zk/edit?usp=sharing'
 
     # Add more assignments as needed
