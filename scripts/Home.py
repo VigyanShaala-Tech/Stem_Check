@@ -58,7 +58,7 @@ st.write("Selected Cohort:", selected_Cohort)
 github_urls = {
     "Goal Setting": 'https://docs.google.com/spreadsheets/d/1N5xI5KkCxKL6YYA2a3mfaj4F-wSl5zFifu4A84UHoOY/edit?usp=sharing',
     "Resume": 'https://docs.google.com/spreadsheets/d/159uBGYMsbJGv70jbXF5vwEdB7m8zbubif_EbY1TFeVg/edit?usp=sharing',
-    "SMART Goals": 'https://docs.google.com/spreadsheets/d/19UrJUqaeXPDVcL6_bN0CiIc3fcSh_DputLNl4ciiR3w/edit?usp=sharing',
+    #"SMART Goals": 'https://docs.google.com/spreadsheets/d/19UrJUqaeXPDVcL6_bN0CiIc3fcSh_DputLNl4ciiR3w/edit?usp=sharing',
     "Searching & Securing Internship": 'https://docs.google.com/spreadsheets/d/1DnUPMOOxqgaPRJ6b0V9e8usGQtkVG1qJ7ffRzl_E5Uc/edit?usp=sharing',
     "Career Exploration": 'https://docs.google.com/spreadsheets/d/1nKOWNzHazM49Dw15vMEWhdJEhSTZvk3Wv4DU-eaImHY/edit?usp=sharing'
 
