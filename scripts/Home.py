@@ -59,9 +59,8 @@ github_urls = {
     "Career Exploration": 'https://docs.google.com/spreadsheets/d/1nKOWNzHazM49Dw15vMEWhdJEhSTZvk3Wv4DU-eaImHY/edit?usp=sharing',
     "Resume": 'https://docs.google.com/spreadsheets/d/159uBGYMsbJGv70jbXF5vwEdB7m8zbubif_EbY1TFeVg/edit?usp=sharing',
     "Goal Setting": 'https://docs.google.com/spreadsheets/d/1N5xI5KkCxKL6YYA2a3mfaj4F-wSl5zFifu4A84UHoOY/edit?usp=sharing',
-    "SMART Goals": 'https://docs.google.com/spreadsheets/d/19UrJUqaeXPDVcL6_bN0CiIc3fcSh_DputLNl4ciiR3w/edit?usp=sharing',
-    "Sedarching & Securing Internship": 'https://docs.google.com/spreadsheets/d/1DnUPMOOxqgaPRJ6b0V9e8usGQtkVG1qJ7ffRzl_E5Uc/edit?usp=sharing',
-    "Linkedin" : 'https://docs.google.com/spreadsheets/d/1zp0crVGZn81yrWRJnKNUOjdmPS_hgDJONNsDQKk89A0/edit?usp=sharing'
+    "CAP": 'https://docs.google.com/spreadsheets/d/1aEeSsVazN2Zt0gOEOrC8zq5ikE9L9IQ2JA5yP3qUolU/edit?usp=sharing',
+    "Linkedin": 'https://docs.google.com/spreadsheets/d/1zp0crVGZn81yrWRJnKNUOjdmPS_hgDJONNsDQKk89A0/edit?usp=sharing'
 
     # Add more assignments as needed
 }
