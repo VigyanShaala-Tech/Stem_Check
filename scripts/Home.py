@@ -64,6 +64,7 @@ github_urls = {
     "SMART Goals": 'https://docs.google.com/spreadsheets/d/19UrJUqaeXPDVcL6_bN0CiIc3fcSh_DputLNl4ciiR3w/edit?usp=sharing',
     "Linkedin": 'https://docs.google.com/spreadsheets/d/1zp0crVGZn81yrWRJnKNUOjdmPS_hgDJONNsDQKk89A0/edit?usp=sharing',
     "SMART Goal(UK)":"https://docs.google.com/spreadsheets/d/1fjpfqB-X0hLRzjuIcm8_yquRkFr1Ehr07FLV5UrC5LQ/edit?usp=sharing",
+    "Searching & Securing Internship": 'https://docs.google.com/spreadsheets/d/1DnUPMOOxqgaPRJ6b0V9e8usGQtkVG1qJ7ffRzl_E5Uc/edit?usp=sharing',
     "SWOT Analysis": 'https://docs.google.com/spreadsheets/d/17tiZ7aebyiec8bHgE1vVnFMorBR3pqR870NJXvk7oQ0/edit?usp=sharing'
     
     # Add more assignments as needed
