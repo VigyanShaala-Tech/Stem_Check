@@ -56,7 +56,6 @@ st.write("Selected Cohort:", selected_Cohort)
 # Function to read CSV files from a folder path obtained from GitHub and store them in a dictionary
 # Define the GitHub API URLs for the folders containing CSV files
 github_urls = {
-    "Goal Setting": 'https://docs.google.com/spreadsheets/d/1N5xI5KkCxKL6YYA2a3mfaj4F-wSl5zFifu4A84UHoOY/edit?usp=sharing',
     "Career Exploration": 'https://docs.google.com/spreadsheets/d/1nKOWNzHazM49Dw15vMEWhdJEhSTZvk3Wv4DU-eaImHY/edit?usp=sharing',
     "CAP": 'https://docs.google.com/spreadsheets/d/1aEeSsVazN2Zt0gOEOrC8zq5ikE9L9IQ2JA5yP3qUolU/edit?usp=sharing',
     "Goal Setting(UK)": 'https://docs.google.com/spreadsheets/d/133hrhht7g2TC8NQIG30JKbSfDSoAr4SkPuuTvcQpYnY/edit?usp=sharing',
