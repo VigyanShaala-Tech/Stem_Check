@@ -47,7 +47,7 @@ filtered_user_names = [user_name for user_name, access_code in user_access_codes
 
 selected_user_name = st.sidebar.selectbox('Select Your User Name:', filtered_user_names)
 
-selected_Cohort = st.sidebar.selectbox("Select a Cohort", ["Incubator_4","Incubator_1","Incubator_2","Incubator_3"])
+selected_Cohort = st.sidebar.selectbox("Select a Cohort", ["Incubator_6","Incubator_4","Incubator_1","Incubator_2","Incubator_3"])
 
 # Display the selected option
 st.write("Selected Cohort:", selected_Cohort)
