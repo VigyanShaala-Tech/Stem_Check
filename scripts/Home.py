@@ -57,9 +57,12 @@ st.write("Selected Cohort:", selected_Cohort)
 # Define the GitHub API URLs for the folders containing CSV files
 github_urls = {
     "CV_Resume": "https://docs.google.com/spreadsheets/d/1I0K2vLfm9intnCc34BgdpQl13xLmCiAvNF6jlT2xQFs/edit?usp=sharing",
-    "SMART Goal":"https://docs.google.com/spreadsheets/d/1CpIVi0F98Wa2D3nCnmxs4AMBTjjR3er0ilWWMT4ksGg/edit?usp=sharing",
     "Career Exploration": "https://docs.google.com/spreadsheets/d/13SGFN2UtquBSiwUjaCCO2LR2A_915zY55hGucG2B5qU/edit?usp=sharing",
-    "Goal Setting":"https://docs.google.com/spreadsheets/d/1FULh4Z5177qdnHlheo_YfypoTMFCm9wt82lX3wumYCw/edit?usp=sharing"
+    "Incubator 4:Career Exploration":"https://docs.google.com/spreadsheets/d/1vv7q0UtIeSEItQRzgBeBVTXYRuUgdz6EQUw6ZEEjYj8/edit?usp=sharing",
+    "Incubator 4:SWOT Analysis":"https://docs.google.com/spreadsheets/d/1-FqwF31HTyh37X8PADQoKrkgn3pTFl7Osk7HAOdQYDY/edit?usp=sharing",
+    "Incubator 4:CAP":"https://docs.google.com/spreadsheets/d/1vntdzIIidwl9ibgW7KXsHeL8XbEuINNYaL7fi-SYimw/edit?usp=sharing",
+    "Incubator 4:Resume":"https://docs.google.com/spreadsheets/d/1gBjEthTSrGSKFq6KaNzFgmxgonbKBXY4kukAJBdDhQI/edit?usp=sharing"
+    
     
     # Add more assignments as needed
 }
