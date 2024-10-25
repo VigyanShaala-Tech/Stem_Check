@@ -57,7 +57,9 @@ st.write("Selected Cohort:", selected_Cohort)
 # Define the GitHub API URLs for the folders containing CSV files
 github_urls = {
     "CV_Resume": "https://docs.google.com/spreadsheets/d/1I0K2vLfm9intnCc34BgdpQl13xLmCiAvNF6jlT2xQFs/edit?usp=sharing",
-    "Career Exploration": "https://docs.google.com/spreadsheets/d/13SGFN2UtquBSiwUjaCCO2LR2A_915zY55hGucG2B5qU/edit?usp=sharing"
+    "Career Exploration": "https://docs.google.com/spreadsheets/d/13SGFN2UtquBSiwUjaCCO2LR2A_915zY55hGucG2B5qU/edit?usp=sharing",
+    "Goal Setting": "https://docs.google.com/spreadsheets/d/1ushQav0jQ3W7PcoZShYTP-l1CH75QlY9AV04D8QL-LE/edit?usp=sharing",
+    "SMART goals": "https://docs.google.com/spreadsheets/d/1K4ilTt5n9y50b7D_y1pK3QTYvH2CF7Bvsxp1dnKL0gc/edit?usp=sharing"
     
     
     # Add more assignments as needed
